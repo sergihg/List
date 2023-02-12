@@ -64,7 +64,7 @@ public class ArrayList {
         return size;
     }
     public ArrayListIterator getIterator(){
-        return new ArrayListIterator(array);
+        return new ArrayListIterator(this);
     }
     private void increaseSize(){
         String []newArray = new String[array.length * 2];
