@@ -6,10 +6,13 @@ public class LinkedListIterator {
         currentNode = head;
     }
     public boolean hasNext() {
-        return currentNode !=null;
+        if(currentNode.next == null){
+            return false;
+        }
+        return true;
     }
     public String next(){
-        String data = currentNode.data;
+        String data = currentNode.getData();
         currentNode = currentNode.next;
         return data;
     }

@@ -6,24 +6,25 @@ public class LinkedList {
     private int size;
     public void addAtTail(String data){
         Node node = new Node();
-        node.data = data;
-        node.previous = tail;
-        if(head==null) {
+        node.setData(data);
+
+        if(size==0) {
             head = node;
         }else{
-            tail.next = node;
+            node.setPrevious(tail);
+            tail.setNext(node);
         }
-        tail = node;
+        tail=node;
         size++;
     }
     public void addAtFront(String data){
         Node node = new Node();
-        node.data = data;
-        node.next = head;
-        if(tail == null){
+        node.setData(data);
+        if(size == 0){
             tail = node;
         }else{
-            head.previous=node;
+            node.setNext(head);
+            head.setPrevious(node);
         }
         head = node;
         size++;
@@ -36,12 +37,12 @@ public class LinkedList {
             }
             if(node.next==null)
             {
-                node.previous.next = null;
+                node.previous.setNext(null);
             }else if (node.previous == null){
-                node.next.previous = null;
+                node.next.setPrevious(null);
             }else{
-                node.previous.next = node.next;
-                node.next.previous = node.previous;
+                node.previous.setNext(node.next);
+                node.next.setPrevious(node.previous);
             }
 
             size--;
@@ -58,7 +59,7 @@ public class LinkedList {
             for (int currentIndex = 0; currentIndex < index; currentIndex++) {
                 nodo = nodo.next;
             }
-            nodo.data = data;
+            nodo.setData(data);
         }
     }
     public String getAt(int index){
@@ -69,7 +70,7 @@ public class LinkedList {
         for (int currentIndex = 0; currentIndex < index; currentIndex++) {
             currentNode = currentNode.next;
         }
-        return currentNode.data;
+        return currentNode.getData();
     }
     public void removeAllWithValue(String data){
         Node node = head;
@@ -77,12 +78,12 @@ public class LinkedList {
             if(node.data == data) {
                 if(node.next==null)
                 {
-                    node.previous.next = null;
+                    node.previous.setNext(null);
                 }else if (node.previous == null){
-                    node.next.previous = null;
+                    node.next.setPrevious(null);
                 }else{
-                    node.previous.next = node.next;
-                    node.next.previous = node.previous;
+                    node.previous.setNext(node.next);
+                    node.next.setPrevious(node.previous);
                 }
                 size--;
             }
