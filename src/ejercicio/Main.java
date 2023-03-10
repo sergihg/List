@@ -2,6 +2,9 @@ package ejercicio;
 
 import uaslp.objetos.list.arraylist.ArrayList;
 import uaslp.objetos.list.arraylist.ArrayListIterator;
+import uaslp.objetos.list.List;
+import uaslp.objetos.list.Iterator;
+import uaslp.objetos.list.linkedlist.LinkedList;
 
 import java.util.Scanner;
 
@@ -12,8 +15,9 @@ public class Main {
         int option,index;
         String data;
         Scanner scanner = new Scanner(System.in);
-        ArrayList array = new ArrayList();
-        ArrayListIterator iterator;
+        //List list = new ArrayList();
+        List list = new LinkedList();
+        Iterator iterator;
 
         do{
             System.out.println("Opcion 1: addAtTail");
@@ -30,45 +34,45 @@ public class Main {
                 case 1:
                     System.out.println("data: ");
                     data = scanner.next();
-                    array.addAtTail(data);
+                    list.addAtTail(data);
                     break;
                 case 2:
                     System.out.println("data: ");
                     data = scanner.next();
-                    array.addAtFront(data);
+                    list.addAtFront(data);
                     break;
                 case 3:
                     System.out.println("index: ");
                     index = scanner.nextInt();
-                    array.remove(index);
+                    list.remove(index);
                     break;
                 case 4:
-                    array.removeAll();
+                    list.removeAll();
                     break;
                 case 5:
                     System.out.println("data: ");
                     data = scanner.next();
                     System.out.println("index: ");
                     index = scanner.nextInt();
-                    array.setAt(index,data);
+                    list.setAt(index,data);
                     break;
                 case 6:
                     System.out.println("index: ");
                     index = scanner.nextInt();
-                    data= array.getAt(index);
+                    data= list.getAt(index);
                     System.out.println(data);
                     break;
                 case 7:
                     System.out.println("data: ");
                     data = scanner.next();
-                    array.removeAllWithValue(data);
+                    list.removeAllWithValue(data);
                     break;
                 case 8:
-                    index = array.getSize();
+                    index = list.getSize();
                     System.out.println("size: "+ index);
                     break;
                 case 9:
-                    iterator = array.getIterator();
+                    iterator = list.getIterator();
                     while(iterator.hasNext()){
                         System.out.println(iterator.next());
                     }

@@ -1,7 +1,10 @@
 package uaslp.objetos.list.arraylist;
 
 
-public class ArrayList {
+import uaslp.objetos.list.Iterator;
+import uaslp.objetos.list.List;
+
+public class ArrayList implements List {
     private static final int INITIAL_SIZE = 2;
     private int size;
     private String []array;
@@ -51,7 +54,7 @@ public class ArrayList {
     }
     public void removeAllWithValue(String data){
         for(int i=0;i<size;i++){
-            if(array[i]==data){
+            if(array[i].equals(data)){
                 for (int j = i; j < (size - 1); j++) {
                     array[j] = array[j + 1];
                 }
@@ -63,7 +66,7 @@ public class ArrayList {
     public int getSize(){
         return size;
     }
-    public ArrayListIterator getIterator(){
+    public Iterator getIterator(){
         return new ArrayListIterator(this);
     }
     private void increaseSize(){
