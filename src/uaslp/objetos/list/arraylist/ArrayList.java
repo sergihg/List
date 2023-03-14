@@ -4,21 +4,23 @@ package uaslp.objetos.list.arraylist;
 import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
 
-public class ArrayList implements List {
+public class ArrayList<T> implements List<T> {
     private static final int INITIAL_SIZE = 2;
     private int size;
-    private String []array;
+    private T []array;
+
+    @SuppressWarnings("unchecked")
     public ArrayList(){
-        array = new String[INITIAL_SIZE];
+        array = (T[])(new Object[INITIAL_SIZE]);
     }
-    public void addAtTail(String data){
+    public void addAtTail(T data){
         if(size==array.length){
             increaseSize();
         }
         array[size] = data;
         size++;
     }
-    public void addAtFront(String data){
+    public void addAtFront(T data){
         if(size==array.length){
             increaseSize();
         }
@@ -37,22 +39,23 @@ public class ArrayList implements List {
             size--;
         }
     }
+    @SuppressWarnings("unchecked")
     public void removeAll(){
-        array = new String[INITIAL_SIZE];
+        array = (T[])(new Object[INITIAL_SIZE]);
         size=0;
     }
-    public void setAt(int index, String data){
+    public void setAt(int index, T data){
         if(index<size){
             array[index] = data;
         }
     }
-    public String  getAt(int index){
+    public T  getAt(int index){
         if(index<size){
             return array[index];
         }
-        return "fuera del tamaño del arreglo";
+        return null;
     }
-    public void removeAllWithValue(String data){
+    public void removeAllWithValue(T data){
         for(int i=0;i<size;i++){
             if(array[i].equals(data)){
                 for (int j = i; j < (size - 1); j++) {
@@ -66,11 +69,13 @@ public class ArrayList implements List {
     public int getSize(){
         return size;
     }
-    public Iterator getIterator(){
-        return new ArrayListIterator(this);
+    public Iterator<T> getIterator(){
+        return new ArrayListIterator<>(this);
     }
+
+    @SuppressWarnings("unchecked")
     private void increaseSize(){
-        String []newArray = new String[array.length * 2];
+        T []newArray = (T[])(new Object[array.length * 2]);
         for(int i=0; i< array.length;i++){
             newArray[i]=array[i];
         }

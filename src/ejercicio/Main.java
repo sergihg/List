@@ -15,9 +15,9 @@ public class Main {
         int option,index;
         String data;
         Scanner scanner = new Scanner(System.in);
-        //List list = new ArrayList();
-        List list = new LinkedList();
-        Iterator iterator;
+        //List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
+        Iterator<String> iterator;
 
         do{
             System.out.println("Opcion 1: addAtTail");

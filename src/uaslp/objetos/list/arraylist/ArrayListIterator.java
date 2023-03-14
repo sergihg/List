@@ -2,24 +2,22 @@ package uaslp.objetos.list.arraylist;
 
 import uaslp.objetos.list.Iterator;
 
-public class ArrayListIterator implements Iterator {
-    private String []iterator;
+public class ArrayListIterator<T> implements Iterator<T> {
+    private final ArrayList<T> iterator;
     private int currentIndex;
-    public ArrayListIterator(ArrayList array){
-        iterator = new String[array.getSize()];
-        for(int i=0;i< iterator.length;i++){
-            iterator[i]=array.getAt(i);
-        }
+    public ArrayListIterator(ArrayList<T> array){
+        iterator = array;
+        currentIndex = 0;
     }
     public boolean hasNext() {
-        if(currentIndex < iterator.length){
+        if(currentIndex < iterator.getSize()){
             return true;
         }
         return false;
     }
-    public String next(){
+    public T next(){
 
-        String data = iterator[currentIndex];
+        T data = iterator.getAt(currentIndex);
         currentIndex++;
         return data;
     }

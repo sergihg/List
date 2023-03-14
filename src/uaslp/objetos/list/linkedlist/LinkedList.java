@@ -3,12 +3,12 @@ package uaslp.objetos.list.linkedlist;
 import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
 
-public class LinkedList implements List {
-    private Node head;
-    private Node tail;
+public class LinkedList<T> implements List<T> {
+    private Node<T> head;
+    private Node<T> tail;
     private int size;
-    public void addAtTail(String data){
-        Node node = new Node();
+    public void addAtTail(T data){
+        Node<T> node = new Node<>();
         node.setData(data);
 
         if(size==0) {
@@ -20,8 +20,8 @@ public class LinkedList implements List {
         tail=node;
         size++;
     }
-    public void addAtFront(String data){
-        Node node = new Node();
+    public void addAtFront(T data){
+        Node<T> node = new Node<>();
         node.setData(data);
         if(size == 0){
             tail = node;
@@ -34,14 +34,14 @@ public class LinkedList implements List {
     }
     public void remove(int index){
         if(index < size) {
-            Node node = head;
+            Node<T> node = head;
             for (int currentIndex = 0; currentIndex < index; currentIndex++) {
                 node = node.next;
             }
             if(node.next==null)
             {
                 node.previous.setNext(null);
-            }else if (node.previous == null){
+            }else if (node.previous == null) {
                 node.next.setPrevious(null);
             }else{
                 node.previous.setNext(node.next);
@@ -56,27 +56,27 @@ public class LinkedList implements List {
         tail = null;
         size = 0;
     }
-    public void setAt(int index, String data){
+    public void setAt(int index, T data){
         if(index <= size) {
-            Node nodo = head;
+            Node<T> nodo = head;
             for (int currentIndex = 0; currentIndex < index; currentIndex++) {
                 nodo = nodo.next;
             }
             nodo.setData(data);
         }
     }
-    public String getAt(int index){
+    public T getAt(int index){
         if(index<0 || index>=size) {
             return null;
         }
-        Node currentNode = head;
+        Node<T> currentNode = head;
         for (int currentIndex = 0; currentIndex < index; currentIndex++) {
             currentNode = currentNode.next;
         }
         return currentNode.getData();
     }
-    public void removeAllWithValue(String data){
-        Node node = head;
+    public void removeAllWithValue(T data){
+        Node<T> node = head;
         for (int currentIndex = 0; currentIndex < size; currentIndex++) {
             if(node.getData().equals(data)) {
                 if(node.next==null)
@@ -99,7 +99,7 @@ public class LinkedList implements List {
     public int getSize() {
         return size;
     }
-    public Iterator getIterator(){
-        return new LinkedListIterator(head);
+    public Iterator<T> getIterator(){
+        return new LinkedListIterator<>(head);
     }
 }
