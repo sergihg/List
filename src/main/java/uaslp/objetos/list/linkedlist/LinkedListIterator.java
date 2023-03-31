@@ -1,6 +1,7 @@
 package uaslp.objetos.list.linkedlist;
 
 import uaslp.objetos.list.Iterator;
+import uaslp.objetos.list.exceptions.BadIndexException;
 
 public class LinkedListIterator<K> implements Iterator <K>{
     private Node<K> currentNode;

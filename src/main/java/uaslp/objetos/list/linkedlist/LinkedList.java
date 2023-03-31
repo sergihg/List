@@ -2,12 +2,17 @@ package uaslp.objetos.list.linkedlist;
 
 import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
+import uaslp.objetos.list.exceptions.BadIndexException;
+import uaslp.objetos.list.exceptions.NotNullAllowedException;
 
 public class LinkedList<T> implements List<T> {
     private Node<T> head;
     private Node<T> tail;
     private int size;
-    public void addAtTail(T data){
+    public void addAtTail(T data) throws NotNullAllowedException {
+        if(data == null) {
+            throw new NotNullAllowedException();
+        }
         Node<T> node = new Node<>();
         node.setData(data);
 
@@ -20,7 +25,10 @@ public class LinkedList<T> implements List<T> {
         tail=node;
         size++;
     }
-    public void addAtFront(T data){
+    public void addAtFront(T data) throws NotNullAllowedException {
+        if(data == null) {
+            throw new NotNullAllowedException();
+        }
         Node<T> node = new Node<>();
         node.setData(data);
         if(size == 0){
@@ -32,7 +40,7 @@ public class LinkedList<T> implements List<T> {
         head = node;
         size++;
     }
-    public void remove(int index){
+    public void remove(int index) throws BadIndexException{
         if(index < size) {
             Node<T> node = head;
             for (int currentIndex = 0; currentIndex < index; currentIndex++) {
@@ -50,24 +58,28 @@ public class LinkedList<T> implements List<T> {
 
             size--;
         }
+        else throw new BadIndexException();
     }
     public void removeAll(){
         head = null;
         tail = null;
         size = 0;
     }
-    public void setAt(int index, T data){
+    public void setAt(int index, T data) throws BadIndexException,NotNullAllowedException{
         if(index <= size) {
+            if(data==null)
+                throw new NotNullAllowedException();
             Node<T> nodo = head;
             for (int currentIndex = 0; currentIndex < index; currentIndex++) {
                 nodo = nodo.next;
             }
             nodo.setData(data);
         }
+        else throw new BadIndexException();
     }
-    public T getAt(int index){
+    public T getAt(int index) throws BadIndexException{
         if(index<0 || index>=size) {
-            return null;
+            throw new BadIndexException();
         }
         Node<T> currentNode = head;
         for (int currentIndex = 0; currentIndex < index; currentIndex++) {
@@ -79,18 +91,10 @@ public class LinkedList<T> implements List<T> {
         Node<T> node = head;
         for (int currentIndex = 0; currentIndex < size; currentIndex++) {
             if(node.getData().equals(data)) {
-                if(node.next==null)
-                {
-                    node.previous.setNext(null);
-                    tail = node.previous;
-                }else if (node.previous == null){
-                    node.next.setPrevious(null);
-                    head = node.next;
-                }else{
-                    node.previous.setNext(node.next);
-                    node.next.setPrevious(node.previous);
+                try{
+                    remove(currentIndex);
+                }catch (BadIndexException ignored){
                 }
-                size--;
             }
             node = node.next;
         }
