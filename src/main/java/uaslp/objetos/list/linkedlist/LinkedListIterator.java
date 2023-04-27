@@ -9,14 +9,13 @@ public class LinkedListIterator<K> implements Iterator <K>{
         currentNode = head;
     }
     public boolean hasNext() {
-        if(currentNode.next == null){
+        if(currentNode == null)
             return false;
-        }
         return true;
     }
     public K next(){
         K data = currentNode.getData();
-        currentNode = currentNode.next;
+        currentNode = currentNode.getNext();
         return data;
     }
 }

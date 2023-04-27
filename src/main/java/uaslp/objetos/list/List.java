@@ -13,4 +13,5 @@ public interface List <T>{
     void removeAllWithValue(T data);
     int getSize();
     Iterator <T> getIterator();
+    boolean isEmpty();
 }

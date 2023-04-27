@@ -17,9 +17,7 @@ public class ArrayList<T> implements List<T> {
         array = (T[])(new Object[INITIAL_SIZE]);
     }
     public void addAtTail(T data) throws NotNullAllowedException {
-        if(data == null) {
-            throw new NotNullAllowedException();
-        }
+        validateNotNullValue(data);
 
         if (size==array.length){
             increaseSize();
@@ -28,9 +26,7 @@ public class ArrayList<T> implements List<T> {
         size++;
     }
     public void addAtFront(T data) throws NotNullAllowedException{
-        if(data == null) {
-            throw new NotNullAllowedException();
-        }
+        validateNotNullValue(data);
 
         if(size==array.length){
                 increaseSize();
@@ -42,35 +38,26 @@ public class ArrayList<T> implements List<T> {
         size++;
     }
     public void remove(int index) throws BadIndexException {
-        if(index<size){
-            for (int i = index; i < (size-1); i++) {
-                array[i] = array[i + 1];
-            }
-            array[size-1]=null;
-            size--;
+        validateInvalidIndex(index);
+        for (int i = index; i < (size-1); i++) {
+            array[i] = array[i + 1];
         }
-        else throw new BadIndexException();
+        array[size-1]=null;
+        size--;
     }
-    @SuppressWarnings("unchecked")
+
     public void removeAll(){
         array = (T[])(new Object[INITIAL_SIZE]);
         size=0;
     }
     public void setAt(int index, T data) throws BadIndexException,NotNullAllowedException{
-        if(index<size){
-            if(data==null)
-                throw new NotNullAllowedException();
-            else {
-                array[index] = data;
-            }
-        }
-        else throw new BadIndexException();
+        validateInvalidIndex(index);
+        validateNotNullValue(data);
+        array[index] = data;
     }
     public T  getAt(int index) throws BadIndexException{
-        if(index<size){
-            return array[index];
-        }
-        throw new BadIndexException();
+        validateInvalidIndex(index);
+        return array[index];
     }
     public void removeAllWithValue(T data){
         for(int i=0;i<size;i++){
@@ -88,6 +75,11 @@ public class ArrayList<T> implements List<T> {
     public Iterator<T> getIterator(){
         return new ArrayListIterator<>(this);
     }
+    public boolean isEmpty(){
+        if (size==0)
+            return true;
+        return false;
+    }
 
     @SuppressWarnings("unchecked")
     private void increaseSize(){
@@ -96,5 +88,15 @@ public class ArrayList<T> implements List<T> {
             newArray[i]=array[i];
         }
         array=newArray;
+    }
+
+    private void validateNotNullValue(T data) throws NotNullAllowedException{
+        if(data==null)
+            throw new NotNullAllowedException();
+    }
+    private void validateInvalidIndex(int index) throws BadIndexException{
+        if(index<0 || index>=size) {
+            throw new BadIndexException("Index "+index+" out of bounds for length "+size);
+        }
     }
 }

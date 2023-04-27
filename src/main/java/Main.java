@@ -1,5 +1,3 @@
-package ejercicio;
-
 import java.io.IOException;
 
 import uaslp.objetos.list.Iterator;
@@ -17,8 +15,6 @@ public class Main {
         List<Object> list1 = new LinkedList<>();
         List<Object> list2 = new ArrayList<>();
 
-        try {
-
             System.out.println("\nTest list1 (LinkedList)");
             testAddAtFront(list1);
             testAddAtTail(list1);
@@ -35,9 +31,7 @@ public class Main {
             testGetAtIndex(list2);
             testRemoveAllWithValue(list2);
 
-        } catch (CollectionsException ex) {
-            ex.printStackTrace();
-        }
+
     }
 
     private static void testRemoveAllWithValue(List<Object> list) throws NotNullAllowedException {

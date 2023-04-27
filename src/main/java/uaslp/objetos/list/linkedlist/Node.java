@@ -1,10 +1,14 @@
 package uaslp.objetos.list.linkedlist;
- class Node <T>{
+
+
+import java.util.LinkedList;
+
+class Node <T>{
     T data;
     Node<T> next;
     Node<T> previous;
 
-     public T getData() {
+    public T getData() {
          return data;
      }
 
