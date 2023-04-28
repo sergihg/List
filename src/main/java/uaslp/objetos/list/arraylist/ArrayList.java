@@ -62,10 +62,7 @@ public class ArrayList<T> implements List<T> {
     public void removeAllWithValue(T data){
         for(int i=0;i<size;i++){
             if(array[i].equals(data)){
-                try {
                     remove(i);
-                }catch (BadIndexException ignored){
-                }
             }
         }
     }

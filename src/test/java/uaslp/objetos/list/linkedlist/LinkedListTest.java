@@ -267,11 +267,12 @@ public class LinkedListTest {
         list.addAtTail("12");
 
         //Ejecucion
-        Iterator iterator;
+        Iterator<String> iterator;
         iterator = list.getIterator();
+        boolean hasNext = iterator.hasNext();
 
         //Validacion
-        Assertions.assertTrue(iterator.hasNext());
+        Assertions.assertTrue(hasNext);
     }
     @Test
     public void givenAnEmptyList_whenGetIterator_thenFirstIterationDoesNotHaveNext(){
@@ -279,11 +280,12 @@ public class LinkedListTest {
         LinkedList<String> list = new LinkedList<>();
 
         //Ejecucion
-        Iterator iterator;
+        Iterator<String> iterator;
         iterator = list.getIterator();
+        boolean hasNext = iterator.hasNext();
 
         //Validacion
-        Assertions.assertFalse(iterator.hasNext());
+        Assertions.assertFalse(hasNext);
     }
     @Test
     public void givenAListWithElements_whenIteratorDoesNext_thenListIsRead(){
@@ -292,7 +294,7 @@ public class LinkedListTest {
         list.addAtTail("10");
         list.addAtTail("11");
         list.addAtTail("12");
-        Iterator iterator;
+        Iterator<String> iterator;
         iterator = list.getIterator();
 
         //Ejecucion
@@ -308,7 +310,7 @@ public class LinkedListTest {
     public void givenAnEmptyList_whenIteratorDoesNext_thenDoesNothing(){
         //Inicialización
         LinkedList<String> list = new LinkedList<>();
-        Iterator iterator;
+        Iterator<String> iterator;
         iterator = list.getIterator();
 
         //Ejecucion
